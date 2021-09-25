@@ -2,6 +2,9 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter.ttk import *
 
+import graphviz as graphviz
+from graphviz import Digraph
+
 import os.path as path
 from xml.dom import minidom
 
@@ -15,12 +18,13 @@ LISTA_MAQUINA = Lista()
 LISTA_SIMULACION = Lista()
 LISTA_COMBO = []
 
+def generarHTML():
+    print("")
 
 def archivoMaquina():
     ruta = filedialog.askopenfilename(initialdir="/",
                                       title="Seleccione archivo", filetypes=(("xml files", "*.xml"),
                                                                              ("all files", "*.*")))
-
     if path.isfile(ruta):
         archivo_xml = minidom.parse(ruta)
         items = archivo_xml.getElementsByTagName("Maquina")
