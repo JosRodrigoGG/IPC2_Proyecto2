@@ -219,7 +219,7 @@ def archivoMaquina():
                 nombre = str(
                     lista.getElementsByTagName("nombre")[0].childNodes[0].data.replace('\n', "").replace(" ", ""))
                 listaElaboracion = lista.getElementsByTagName("elaboracion")[0].childNodes[0].data.split()
-                producto = Producto(nombre)
+                producto = Producto(nombre.replace('\t',""))
 
                 for elaboracion in listaElaboracion:
                     producto.agregarElaboracion(elaboracion)
@@ -274,7 +274,9 @@ def iniciarSimulacion():
         while aux1:
             aux2 = aux1.dato.getProductos().primero
             while aux2:
+                print(str(aux2.dato.getNombre()).replace(" ",""))
                 if aux2.dato.getNombre() == nombreProducto:
+                    print(nombreProducto)
                     maquina = aux1.dato
                     producto = aux2.dato
                 aux2 = aux2.siguiente
